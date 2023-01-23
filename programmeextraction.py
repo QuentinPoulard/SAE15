@@ -3,6 +3,29 @@ import datetime
 import os
 import csv
 import typing
+import numpy as np
+import matplotlib.pyplot as plt
+
+#variable pour compter les sources 
+a = int
+a=0
+b = int
+b=0
+c = int
+c=0
+d = int
+d=0
+e = int
+e=0
+f = int
+f=0
+g = int
+g=0
+h = int
+h=0
+i = int
+i=0
+
 
 try:
     with open("DumpFile.txt", encoding="utf8") as fh:
@@ -12,14 +35,14 @@ except:
 ress=res.split('\n')
 
 tableau_evenements=np.array([])
-fic=open("test.csv", "w")#test est le fichier d'arrivée des extractions
+fichier=open("graphique.csv", "w")#test est le fichier d'arrivée des extractions
 evenement = "DATE ; SOURCE ; PORT ; DESTINATION ; FLAG ; SEQ ; ACK ; WIN ; OPTIONS ; LENGTH" #intitulé de mes colonnes
-fic.write(evenement + "\n") #écriture de mes titres dans le tableur
+fichier.write(evenement + "\n") #écriture de mes titres dans le tableur
 characters = ":" #définir une variable avec le caractère ":" (qui nous sera utile pour la suite)
 for event in ress:
         if event.startswith('11:42'): #évenement qui commence par "11:42" (ils commencent tous par 11:42)
             #déclaration variables et remise à zéro
-            seq = ""
+            sequence = ""
             heure1 = ""
             nomip = ""
             port = ""
@@ -29,21 +52,22 @@ for event in ress:
             options = ""
             length = ""
             #Pour la date de l'évenement (première colonne)
-            texte=event.split(".")
+            texte=event.split(" ")
             heure1=texte[0]
             #Pour la source (2ème colonne) 
             texte=event.split(" ")
-            nomip1=texte[2].split(".")
-            if len(nomip1) == 2:
-                nomip=nomip1[0]
-            if len(nomip1) == 3:
-                nomip=nomip1[0]+ "." +nomip1[1]
-            if len(nomip1) == 4:
-                nomip=nomip1[0]+ "." +nomip1[1]+ "." +nomip1[2] 
-            if len(nomip1) == 5:
-                nomip=nomip1[0]+ "." +nomip1[1]+ "." +nomip1[2]+ "." +nomip1[3]
-            if len(nomip1) == 6:
-                nomip=nomip1[0]+ "." +nomip1[1]+ "." +nomip1[2]+ "."+nomip1[3]+"."+ nomip1[4]
+            AdrIP1=texte[2].split(".")
+            if len(AdrIP1) == 2:
+                nomip=AdrIP1[0]
+            if len(AdrIP1) == 3:
+                nomip=AdrIP1[0]+ "." +AdrIP1[1]
+            if len(AdrIP1) == 4:
+                nomip=AdrIP1[0]+ "." +AdrIP1[1]+ "." +AdrIP1[2] 
+            if len(AdrIP1) == 5:
+                nomip=AdrIP1[0]+ "." +AdrIP1[1]+ "." +AdrIP1[2]+ "." +AdrIP1[3]
+            if len(AdrIP1) == 6:
+                nomip=AdrIP1[0]+ "." +AdrIP1[1]+ "." +AdrIP1[2]+ "."+AdrIP1[3]+"."+ AdrIP1[4]
+            
             #port
             if len(texte) > 1: 
                 port1=texte[2].split(".")
@@ -61,7 +85,7 @@ for event in ress:
             if len(texte) > 1: #s'il y a plus de 1 partie à partir du crochet
                 if texte[1].startswith(" seq"): #Si le texte [1] commence par " seq"
                     seq1=texte[1].split(" ") #on coupe à l'espace et on prend le texte juste après
-                    seq=seq1[2] #On a 2 parties entre le split ',' et ce que je recherche
+                    sequence=seq1[2] #On a 2 parties entre le split ',' et ce que je recherche
             #ack
             if len(texte) > 2: #
                 if texte[2].startswith(" ack"): #Si le texte [2] commence par "ack"
@@ -101,6 +125,77 @@ for event in ress:
                     length = length.replace(characters,"")#remplacement du "characters" en " " (pour éviter que le tableur écrit sous forme de date)
             if event.startswith("11:42:55.536521") : #dès que le programme arrive à la dernière ligne du fichier texte
                 prog=0 #il ne fait plus de tour, il s'arrete
-            evenement=heure1+";"+nomip+ ";" +port+ ";" + nomip2+ ";"+flag+ ";" +seq+ ";" +ack+ ";" +win+ ";" +options+ ";" +length
-            fic.write(evenement + "\n") #on écrire "evenement" dans le csv et \n pour revenir à la ligne (pour ne pas écrire sur la même ligne)
-fic.close()
+            evenement=heure1+";"+nomip+ ";" +port+ ";" + nomip2+ ";"+flag+ ";" +sequence+ ";" +ack+ ";" +win+ ";" +options+ ";" +length
+            fichier.write(evenement + "\n") #on écrire "evenement" dans le csv et \n pour revenir à la ligne (pour ne pas écrire sur la même ligne)
+
+            #avoir le nombre de fois que chaque source reviens 
+
+            if nomip=="BP-Linux8":
+                a = a + 1
+                
+            if nomip=="ns1.lan.rt":
+                b=b+1
+            
+            if nomip=="190-0-175-100.gba.solunet.com.ar":
+                c=c+1
+            
+            if nomip=="par21s04-in-f4.1e100.net":
+                d=d+1
+
+            if nomip=="www.aggloroanne.fr":
+                e=e+1
+                
+            if nomip=="mauves.univ-st-etienne.fr":
+                f=f+1
+                
+            if nomip=="par10s38-in-f3.1e100.net":
+                g=g+1
+                
+            if nomip=="par21s23-in-f10.1e100.net":
+                h=h+1
+            
+            if nomip=="par21s23-in-f2.1e100.net":
+                i=i+1
+                
+           
+ 
+    
+x=["www.aggloroanne.fr","ns1.lan.rt","BP-Linux8","190-0-175-100.gba.solunet.com.ar","par21s04-in-f4.1e100.net","mauves.univ-st-etienne.fr","par10s38-in-f3.1e100.net","par21s23-in-f10.1e100.net","par21s23-in-f2.1e100.net"]               
+y=[e,b,a,c,d,f,g,h,i]
+fig, ax = plt.subplots(figsize=(20,10))   
+ax.set_yticks(np.arange(0,4000,400))
+ax.set_title ("DDOS", color="#000000", y=1.05)
+fig.autofmt_xdate(rotation=90)
+ax.bar(x, y)
+
+
+fig.savefig("longueur.png", dpi=300 , bbox_inches="tight")
+
+
+x=["184.107.43.74","BP-Linux8.34862","mauves.univ-st-etienne.fr","www.aggloroanne.fr","BP-Linux8.40678","BP-Linux8.53324","BP-Linux8.53325","BP-Linux8.53328","BP-Linux8.53329","BP-Linux8.40682"]               
+y=[2000,827,251,1022,383,499,385,352,324,400]
+fig, ax = plt.subplots(figsize=(20,10))   
+ax.set_yticks(np.arange(0,4000,400))
+ax.set_title ("DDOS", color="#000000", y=1.05)
+fig.autofmt_xdate(rotation=90)
+ax.bar(x, y)
+
+
+fig.autofmt_xdate(rotation=65)
+
+
+
+
+
+fig.savefig("longueurr.png", dpi=300 , bbox_inches="tight")
+
+
+plt.show()
+
+
+
+
+fichier.close()
+
+
+
