@@ -16,7 +16,7 @@ body{
 	text-align: center;
 	font-size: 5em;
 	margin-top:2%;
-	color: azure;
+	color:  #FEB201;
 	
 }
 .exel{
@@ -35,13 +35,13 @@ width: 44%;
     clear: both;
 }
 .textesource {
-	color: aliceblue;
+	color:  #FEB201;
 	text-align: center;
 	margin-top: 5%;
 	font-size: 1.5em;
 }
 .texte {
-	color: aliceblue;
+	color:  #FEB201;
 }
 .lenght{
 	width: 40%;
@@ -61,5 +61,5 @@ width: 44%;
 	background-color: #FEB201;
 	} 
 .textetcp {
-	color: azure;
+	color:   #FEB201;
 }

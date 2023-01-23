@@ -25,6 +25,19 @@ h = int
 h=0
 i = int
 i=0
+k=int
+k=0
+l=int
+l=0
+
+m=int
+m=0
+
+n=int
+n=0
+p=int
+p=0
+
 
 
 try:
@@ -157,20 +170,44 @@ for event in ress:
             if nomip=="par21s23-in-f2.1e100.net":
                 i=i+1
                 
-           
- 
+            if flag=="P.":
+                k = k+1
+            if flag=="S":
+                l = l+1
+            if flag==".":
+                m = m+1
+            if flag=="":
+                n = n+1
+            if flag=="F.":
+                p = p+1
+                
+#Graphique Source
     
 x=["www.aggloroanne.fr","ns1.lan.rt","BP-Linux8","190-0-175-100.gba.solunet.com.ar","par21s04-in-f4.1e100.net","mauves.univ-st-etienne.fr","par10s38-in-f3.1e100.net","par21s23-in-f10.1e100.net","par21s23-in-f2.1e100.net"]               
 y=[e,b,a,c,d,f,g,h,i]
 fig, ax = plt.subplots(figsize=(20,10))   
 ax.set_yticks(np.arange(0,4000,400))
-ax.set_title ("DDOS", color="#000000", y=1.05)
+ax.set_title ("Source", color="#000000", y=1.05)
 fig.autofmt_xdate(rotation=90)
 ax.bar(x, y)
 
 
+#Graphique Flag
+
 fig.savefig("longueur.png", dpi=300 , bbox_inches="tight")
 
+x=[".","F.","P.","S","Vide"]
+y=[m,p,k,l,n]
+fig, ax = plt.subplots(figsize=(20,10))   
+ax.set_yticks(np.arange(0,7500,500))
+ax.set_title ("FLAG", color="#000000", y=1.05)
+
+ax.bar(x, y)
+
+
+fig.savefig("flag.png", dpi=300 , bbox_inches="tight")
+
+#Graphique destination
 
 x=["184.107.43.74","BP-Linux8.34862","mauves.univ-st-etienne.fr","www.aggloroanne.fr","BP-Linux8.40678","BP-Linux8.53324","BP-Linux8.53325","BP-Linux8.53328","BP-Linux8.53329","BP-Linux8.40682"]               
 y=[2000,827,251,1022,383,499,385,352,324,400]
