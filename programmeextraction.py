@@ -40,6 +40,8 @@ p=0
 
 
 
+
+
 try:
     with open("DumpFile.txt", encoding="utf8") as fh:
         res=fh.read()
@@ -169,7 +171,9 @@ for event in ress:
             
             if nomip=="par21s23-in-f2.1e100.net":
                 i=i+1
-                
+             
+             # Avoir le nombre de voir qu'apparait les différents flag   
+             
             if flag=="P.":
                 k = k+1
             if flag=="S":
@@ -181,8 +185,10 @@ for event in ress:
             if flag=="F.":
                 p = p+1
                 
+            
+                
 #Graphique Source
-    
+   
 x=["www.aggloroanne.fr","ns1.lan.rt","BP-Linux8","190-0-175-100.gba.solunet.com.ar","par21s04-in-f4.1e100.net","mauves.univ-st-etienne.fr","par10s38-in-f3.1e100.net","par21s23-in-f10.1e100.net","par21s23-in-f2.1e100.net"]               
 y=[e,b,a,c,d,f,g,h,i]
 fig, ax = plt.subplots(figsize=(20,10))   
