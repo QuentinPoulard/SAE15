@@ -43,7 +43,7 @@ p=0
 
 
 try:
-    with open("DumpFile.txt", encoding="utf8") as fh:
+    with open("Exam.txt", encoding="utf8") as fh:
         res=fh.read()
 except:
         print("Le fichier n'existe pas %s", os.path.abspath('fichieratraiter.txt'))
@@ -55,7 +55,7 @@ evenement = "DATE ; SOURCE ; PORT ; DESTINATION ; FLAG ; SEQ ; ACK ; WIN ; OPTIO
 fichier.write(evenement + "\n") #écriture de mes titres dans le tableur
 characters = ":" #définir une variable avec le caractère ":" (qui nous sera utile pour la suite)
 for event in ress:
-        if event.startswith('11:42'): #évenement qui commence par "11:42" (ils commencent tous par 11:42)
+        if event.startswith('07:48'): #évenement qui commence par "11:42" (ils commencent tous par 11:42)
             #déclaration variables et remise à zéro
             sequence = ""
             heure1 = ""
@@ -138,7 +138,7 @@ for event in ress:
                     length1=texte[3].split(" ") #on coupe à l'espace
                     length=length1[2] ##On veut bien le "2" pour avoir que le nombre (texte [1] avant l'espace c'est le mot "length").
                     length = length.replace(characters,"")#remplacement du "characters" en " " (pour éviter que le tableur écrit sous forme de date)
-            if event.startswith("11:42:55.536521") : #dès que le programme arrive à la dernière ligne du fichier texte
+            if event.startswith("07:51:14.622569") : #dès que le programme arrive à la dernière ligne du fichier texte
                 prog=0 #il ne fait plus de tour, il s'arrete
             evenement=heure1+";"+nomip+ ";" +port+ ";" + nomip2+ ";"+flag+ ";" +sequence+ ";" +ack+ ";" +win+ ";" +options+ ";" +length
             fichier.write(evenement + "\n") #on écrire "evenement" dans le csv et \n pour revenir à la ligne (pour ne pas écrire sur la même ligne)
